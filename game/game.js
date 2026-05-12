@@ -17,6 +17,10 @@ const PIXEL_SPRITES = {
     other: 'assets/other.png" viewBox="0 0 32 32"%3E%3Crect x="8" y="2" width="16" height="8" fill="%23FFDBAC"/%3E%3Crect x="6" y="10" width="20" height="8" fill="%2300CED1"/%3E%3Crect x="4" y="18" width="24" height="14" fill="%239370DB"/%3E%3Crect x="4" y="18" width="6" height="14" fill="%23FF6B6B"/%3E%3Crect x="22" y="18" width="6" height="14" fill="%23FF6B6B"/%3E%3C/svg%3E'
 };
 
+// Makes sure that when you cheat on someone you have to select who to cheat on:
+
+const CHEAT_OPTIONS = ['Cheat on your current partner', 'Cheat on a random character', 'Cheat on a specific character'];
+
 document.addEventListener('DOMContentLoaded', function() {
     // Retrieve character data from cookie
     playerCharacter = getCookie('characterData');
@@ -203,7 +207,31 @@ function proposeMarriage(character) {
 
 function cheat(character) {
     const relationship = relationships[character.id];
-    const caught = Math.random() < 0.5; // 50% chance of getting caught
+    const caught = Math.random() < 0.4; // 40% chance of getting caught
+
+    // Code for selecting who to cheat on if the player has multiple relationships
+
+    switch (CHEAT_OPTIONS[Math.floor(Math.random() * CHEAT_OPTIONS.length)]) {
+        case 'Cheat on your current partner':
+            // Already cheating on the current partner
+            break;
+        case 'Cheat on a random character':
+            // Randomly select a character to cheat on
+            const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
+            character = randomCharacter;
+            break;
+        case 'Cheat on a specific character':
+            // Prompt the player to select a specific character to cheat on
+            const characterNames = characters.map(c => c.name).join(', ');
+            const selectedName = prompt(`Who do you want to cheat on? Available characters: ${characterNames}`);
+            const selectedCharacter = characters.find(c => c.name.toLowerCase() === selectedName.toLowerCase());
+            if (selectedCharacter) {
+                character = selectedCharacter;
+            } else {
+                alert('Character not found. Cheating on current partner by default.');
+            }
+            break;
+    }
     
     if (caught) {
         gameMoney -= 500;
