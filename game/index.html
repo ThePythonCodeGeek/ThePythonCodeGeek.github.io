@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovely</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="game.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body class="game-body">
+    <div class="game-container">
+        <div class="header">
+            <h1 id="welcome-message"></h1>
+            <div class="money-counter">
+                💰 <span id="money">0</span> 💰
+            </div>
+        </div>
+
+        <div class="characters-grid" id="characters-grid">
+            <!-- Characters will be generated here -->
+        </div>
+
+        <!-- Character Details Modal -->
+        <div id="character-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-body">
+                    <div id="modal-sprite-container" class="modal-sprite-container"></div>
+                    <div class="character-details">
+                        <h2 id="modal-name"></h2>
+                        <p><strong>⚔️ Gender:</strong> <span id="modal-gender"></span></p>
+                        <p><strong>❤️ Sexuality:</strong> <span id="modal-sexuality"></span></p>
+                        <p><strong>🎭 Background:</strong> <span id="modal-background"></span></p>
+                        <p id="compatibility-status"></p>
+                        <p id="relationship-status"></p>
+                    </div>
+                    <div class="modal-actions" id="modal-actions">
+                        <!-- Action buttons will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
